@@ -25,6 +25,7 @@ public:
 		return password;
 	}
 private:
-	std::string username;
-	std::string password;
+	static constexpr int maxSize = 30;
+	char username[maxSize];
+	std::string password[maxSize];
 };
