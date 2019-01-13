@@ -1,5 +1,7 @@
 #include <iostream>
-
+#include <ctime>
+#include "TrainDetails.h"
+/*
 int main()
 {
 	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
@@ -31,4 +33,14 @@ int main()
 
 	system("pause");
 	return 0;
+}
+
+*/
+
+int main()
+{
+	Train train;
+	train.getdetail();
+	train.printDetail();
+	system("pause");
 }
