@@ -27,6 +27,11 @@ public:
 		std::cout << "Time of travel(hour min in 24 hour format)";
 		std::cin >> t.tm_hour >> t.tm_min;
 	}
+	static void PrintTitle() // to print the titles of the table when displaying train info
+	{
+		std::cout << "|Trn No\t|Trn Name\t|Boarding Pt\t|Dest Pt\t|1st Cls Seats\t";
+		std::cout << "|Fare\t|2nd Cls Seats\t|Fare\t|Depart time\t|\n";
+	}
 	void PrintInfo() const 
 	{
 		// for convertin struct tm t to string
@@ -37,10 +42,12 @@ public:
 		std::cout << firstClassFare << "\t" << nSecondClassSeats << "\t" << secondClassFare << "\t" <<timeStr;
 	}
 private:
+	static constexpr int maxSize = 30; // for the length of chars 
+
 	int trainNo;
-	std::string trainName;
-	std::string boardingPt;
-	std::string destinationPt;
+	char trainName[maxSize];
+	char boardingPt[maxSize];
+	char destinationPt[maxSize];
 	int nFirstClassSeats;
 	double firstClassFare;
 	int nSecondClassSeats;
