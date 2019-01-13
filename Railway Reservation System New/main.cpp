@@ -2,6 +2,8 @@
 #include <ctime>
 #include "Train.h"
 #include "Admin.h"
+#include "User.h"
+
 /*
 int main()
 {
@@ -40,6 +42,10 @@ int main()
 
 int main()
 {
+	Admin admin;
+	User user;
+	user.MakeReservation(admin);
+	admin.DisplayTravelSchedules();
 	system("pause");
 	return 0;
 }

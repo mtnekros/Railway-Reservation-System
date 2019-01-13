@@ -20,9 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UserAccount.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>

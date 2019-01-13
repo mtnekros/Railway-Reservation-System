@@ -44,11 +44,12 @@ public:
 		{
 			schedules[i].Serialize(out);
 		}
+		out.close();
 	}
 	void AddTravelSchedule() 
 	{
 		int nSchedules = schedules.size();
-		int newID = schedules[nSchedules - 1].GetId() + 1;
+		int newID = (nSchedules==0) ? 0 : schedules[nSchedules - 1].GetId() + 1;
 		schedules.emplace_back();
 		schedules[nSchedules].SetTrainTravelID( newID );
 		schedules[nSchedules].GetInfo();
@@ -60,11 +61,8 @@ public:
 		std::cout << "\nEnter the id of the travel schedule you want to cancel: ";
 		std::cin >> cancelId;
 		// loop througth the schedules to find schedule to be cancelled
-		for (int i = 0; i < int(schedules.size()); i++)
-		{
-			if (schedules[i].GetId() == cancelId)
-				schedules.erase(schedules.begin()+i);
-		}
+		int i = SearchSchedule(cancelId);
+		schedules.erase(schedules.begin()+i);
 	}
 	void DisplayTravelSchedules() const
 	{
@@ -75,6 +73,21 @@ public:
 	}
 	void DisplayUserAccounts() 
 	{
+	}
+	// function to search id and index, return -1 if not found
+	int SearchSchedule(int id)
+	{
+		for (int i = 0; i < int(schedules.size()); i++)
+		{
+			if (schedules[i].GetId() == id)
+				return i;
+		}
+		return -1;
+	}
+	void DeductAvailSeatsFor(int id, int nSeats, char class_)
+	{
+		int i = SearchSchedule(id);
+		schedules[i].DeductSeats(nSeats, class_);
 	}
 private:
 	std::string password = "password";

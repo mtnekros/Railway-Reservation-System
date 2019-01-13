@@ -121,7 +121,6 @@
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Train.h" />
     <ClInclude Include="User.h" />
-    <ClInclude Include="UserAccount.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
