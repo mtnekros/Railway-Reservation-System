@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ctime>
 #include "TrainDetails.h"
+#include "UserAccount.h"
+
 /*
 int main()
 {
@@ -39,8 +41,9 @@ int main()
 
 int main()
 {
+	UserAccount acc;
 	Train train;
-	train.getdetail();
-	train.printDetail();
+	acc.GetInfo();
+	acc.PrintInfo();
 	system("pause");
 }

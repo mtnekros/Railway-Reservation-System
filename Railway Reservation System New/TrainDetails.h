@@ -6,7 +6,7 @@
 class Train
 {
 public:
-	void getdetail()
+	void GetInfo()
 	{
 		std::cout << "Enter the details of the route\n";
 		std::cout << "Train no:";
@@ -27,7 +27,7 @@ public:
 		std::cout << "Time of travel(hour min in 24 hour format)";
 		std::cin >> t.tm_hour >> t.tm_min;
 	}
-	void printDetail()
+	void PrintInfo() const 
 	{
 		// for convertin struct tm t to string
 		char timeStr[26];

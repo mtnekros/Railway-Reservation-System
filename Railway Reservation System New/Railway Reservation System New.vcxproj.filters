@@ -23,5 +23,8 @@
     <ClInclude Include="TrainDetails.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UserAccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
