@@ -39,7 +39,7 @@ void Admin::AddTravelSchedule()
 	int newID = (nSchedules == 0) ? 0 : schedules[nSchedules - 1].GetId() + 1;
 	schedules.emplace_back();
 	schedules[nSchedules].SetTrainTravelID(newID);
-	schedules[nSchedules].GetInfo();
+	schedules[nSchedules].GetInfoFromAdmin();
 }
 
 void Admin::AddUser()
@@ -93,6 +93,7 @@ void Admin::DisplayTravelSchedules(int id) const
 
 void Admin::DisplayUserAccounts()
 {
+	User::PrintTitles();
 	for (int i = 0; i < int(users.size()); i++)
 	{
 		users[i].PrintInfo();

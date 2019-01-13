@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-#include "Train.h"
+#include "TrainTravelSchedule.h"
 #include "Admin.h"
 #include "User.h"
 

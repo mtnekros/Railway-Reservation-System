@@ -117,11 +117,12 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TrainTravelSchedule.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
-    <ClInclude Include="Train.h" />
+    <ClInclude Include="TrainTravelSchedule.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

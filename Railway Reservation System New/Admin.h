@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "Train.h"
+#include "TrainTravelSchedule.h"
 
 class User;
 class Admin

@@ -12,7 +12,7 @@ public:
 	void CancelReservation(Admin& admin);
 	void Deserialize(std::ifstream& in);
 	void Serialize(std::ofstream& out) const;
-	void PrintTitles() const;
+	static void PrintTitles();
 	void PrintInfo() const;
 	const char* const GetUsername() const;
 	const char* const GetPassword() const;

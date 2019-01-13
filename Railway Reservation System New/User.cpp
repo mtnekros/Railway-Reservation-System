@@ -63,7 +63,7 @@ void User::Serialize(std::ofstream & out) const
 	out.write(reinterpret_cast<const char*>(this), sizeof(*this));
 }
 
-void User::PrintTitles() const
+void User::PrintTitles()
 {
 	using namespace std;
 	const int sm_w = 13;
