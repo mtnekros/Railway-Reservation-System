@@ -4,14 +4,16 @@
 #include <fstream>
 #include <ctime>
 
-class Train
+class TrainTravelSchedule
 {
 public:
+	void SetTrainTravelID(int id)
+	{
+		trainTravelId = id;
+	}
 	void GetInfo()
 	{
 		std::cout << "Enter the details of the route\n";
-		std::cout << "Train no:";
-		std::cin >> trainNo;
 		std::cout << "Train name:";
 		std::cin >> trainName;
 		std::cout << "Boarding point:";
@@ -39,7 +41,7 @@ public:
 		char timeStr[26];
 		asctime_s(timeStr,sizeof(timeStr),&t); 
 		//printing details
-		std::cout << trainNo << "\t" << trainName << "\t" << boardingPt << "\t" << destinationPt << "\t" << nFirstClassSeats << "\t";
+		std::cout << trainTravelId << "\t" << trainName << "\t" << boardingPt << "\t" << destinationPt << "\t" << nFirstClassSeats << "\t";
 		std::cout << firstClassFare << "\t" << nSecondClassSeats << "\t" << secondClassFare << "\t" <<timeStr;
 	}
 	void Serialize(std::ofstream& out)
@@ -50,11 +52,14 @@ public:
 	{
 		in.read(reinterpret_cast<char*>(this), sizeof(*this));
 	}
-
+	int GetId()
+	{
+		return trainTravelId;
+	}
 private:
 	static constexpr int maxSize = 30; // for the length of chars 
 
-	int trainNo;
+	int trainTravelId = 0;
 	char trainName[maxSize];
 	char boardingPt[maxSize];
 	char destinationPt[maxSize];
@@ -65,15 +70,3 @@ private:
 	struct tm t = {}; // for time of departure of train. tm is a struct in ctime header
 };
 
-// just in case
-/*
-{
-	struct tm t = { };
-	t.tm_year = 2018 - 1900;
-	t.tm_mon = 11;
-	t.tm_mday = 12;
-	char t_charRep[26];
-	asctime_s(t_charRep,sizeof(t_charRep),&t);
-	std::cout << t_charRep;
-}
-*/

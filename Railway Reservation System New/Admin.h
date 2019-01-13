@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "UserAccount.h"
 #include "Train.h"
 
@@ -16,18 +17,21 @@ public:
 		{
 			std::cout << "No data";
 			std::ofstream out(trainInfoFile, std::ios::binary);
-			out.write(reinterpret_cast<char*>(&nTrains), sizeof(nTrains)); 
+			int nSchedules = schedules.size();
+			out.write(reinterpret_cast<char*>(&nSchedules), sizeof(nSchedules)); 
 			out.close();
 		}
 		else // if there is data in the file
 		{
 			in.seekg(0);
-			// first data in the file is number of current trains
-			in.read(reinterpret_cast<char*>(&nTrains), sizeof(nTrains));
+			// first data in the file is number of train schedules
+			int nSchedules;
+			in.read(reinterpret_cast<char*>(&nSchedules), sizeof(nSchedules));
+			schedules.resize(nSchedules);
 			// load the train data from the file stream to train object
-			for (int i = 0; i < nTrains; i++)
+			for (int i = 0; i < nSchedules; i++)
 			{
-				trains[i].Deserialize(in);
+				schedules[i].Deserialize(in);
 			}
 		}
 		in.close();
@@ -35,37 +39,49 @@ public:
 	~Admin()
 	{
 		std::ofstream out(trainInfoFile,std::ios::binary);
-		out.write(reinterpret_cast<char*>(&nTrains), sizeof(nTrains));
-		for (int i = 0; i < nTrains; i++)
+		int nSchedules = schedules.size();
+		out.write(reinterpret_cast<char*>(&nSchedules), sizeof(nSchedules));
+		for (int i = 0; i < nSchedules; i++)
 		{
-			trains[i].Serialize(out);
+			schedules[i].Serialize(out);
 		}
 	}
-	void AddTrain() 
+	void AddTravelSchedule() 
 	{
-		trains[nTrains++].GetInfo();
+		int nSchedules = schedules.size();
+		int newID = schedules[nSchedules - 1].GetId() + 1;
+		schedules.emplace_back();
+		schedules[nSchedules].SetTrainTravelID( newID );
+		schedules[nSchedules].GetInfo();
 	}
-	void RemoveTrain()
+	void RemoveTravelSchedule()
 	{
-	}
-	void DisplayTrains() const
-	{
-		for (int i = 0; i < nTrains; i++)
+		DisplayTravelSchedules();
+		int cancelId;
+		std::cout << "\nEnter the id of the travel schedule you want to cancel: ";
+		std::cin >> cancelId;
+		// loop througth the schedules to find schedule to be cancelled
+		for (int i = 0; i < int(schedules.size()); i++)
 		{
-			trains[i].PrintInfo();
+			if (schedules[i].GetId() == cancelId)
+				schedules.erase(schedules.begin()+i);
 		}
 	}
-	void DisplayUserAccounts() {}
+	void DisplayTravelSchedules() const
+	{
+		for (int i = 0; i < int(schedules.size()); i++)
+		{
+			schedules[i].PrintInfo();
+		}
+	}
+	void DisplayUserAccounts() 
+	{
+	}
 private:
 	std::string password = "password";
 	std::string trainInfoFile = "trainsInfo.txt";
 	std::string userInfoFile = "usersInfo.txt";
 	
-	constexpr static int maxTrains = 25; // max no of trains
-	int nTrains = 0; // current no of train
-	Train trains[maxTrains];
-	
-	constexpr static int maxUsers = 100;
-	int nUsers = 0; // no of current users
-	UserAccount users[maxUsers];
+	std::vector<TrainTravelSchedule> schedules;
+	std::vector<UserAccount> users;
 };

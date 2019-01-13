@@ -42,9 +42,7 @@ int main()
 
 int main()
 {
-	Admin admin;
-	//admin.AddTrain();
-	//admin.AddTrain();
-	admin.DisplayTrains();
+	
 	system("pause");
+	return 0;
 }
