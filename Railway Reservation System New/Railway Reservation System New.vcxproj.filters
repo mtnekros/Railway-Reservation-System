@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TrainDetails.h">
+    <ClInclude Include="UserAccount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserAccount.h">
+    <ClInclude Include="Admin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Train.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

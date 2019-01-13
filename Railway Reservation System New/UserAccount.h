@@ -12,20 +12,14 @@ public:
 		std::cout << "Enter password: ";
 		std::cin >> password;
 	}
+
 	void PrintInfo() const
 	{
 		std::cout << username << "\t" << password << "\n";
 	}
-	const std::string& GetName() const
-	{
-		return username;
-	}
-	const std::string& GetPassword() const
-	{
-		return password;
-	}
+
 private:
 	static constexpr int maxSize = 30;
 	char username[maxSize];
-	std::string password[maxSize];
+	char password[maxSize];
 };
