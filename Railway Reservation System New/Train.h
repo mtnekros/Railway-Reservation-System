@@ -45,7 +45,7 @@ private:
 	double firstClassFare;
 	int nSecondClassSeats;
 	double secondClassFare;
-	struct tm t = {}; // for time. is a struct in ctime header
+	struct tm t = {}; // for time of departure of train. tm is a struct in ctime header
 };
 
 // just in case

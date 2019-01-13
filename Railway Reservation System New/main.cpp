@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctime>
-#include "TrainDetails.h"
+#include "Train.h"
 #include "UserAccount.h"
 
 /*
