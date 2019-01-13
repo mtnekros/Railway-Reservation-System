@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <ctime>
 
 class Train
@@ -41,6 +42,15 @@ public:
 		std::cout << trainNo << "\t" << trainName << "\t" << boardingPt << "\t" << destinationPt << "\t" << nFirstClassSeats << "\t";
 		std::cout << firstClassFare << "\t" << nSecondClassSeats << "\t" << secondClassFare << "\t" <<timeStr;
 	}
+	void Serialize(std::ofstream& out)
+	{
+		out.write(reinterpret_cast<char*>(this), sizeof(*this));
+	}
+	void Deserialize(std::ifstream& in)
+	{
+		in.read(reinterpret_cast<char*>(this), sizeof(*this));
+	}
+
 private:
 	static constexpr int maxSize = 30; // for the length of chars 
 
