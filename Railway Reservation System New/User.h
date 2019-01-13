@@ -1,41 +1,26 @@
 #pragma once
 #include <iostream>
-#include "Admin.h"
+#include <fstream>
 
+class Admin;
 class User
 {
-public:	
-	void GetDetail()
-	{
-		std::cout << "Enter the username: ";
-		std::cin >> username;
-		std::cout << "Enter the password: ";
-		std::cin >> password;
-	}
-	void MakeReservation(Admin& admin)
-	{
-		std::cout << "The information about the travel are: \n\n";
-		admin.DisplayTravelSchedules();
-		std::cout << "\nEnter the travel id for the train you want to book: ";
-		int travelId;
-		std::cin >> travelId;
-		if (admin.SearchSchedule(travelId) == -1)
-			std::cout << "invalid id!\n\n";
-		else
-		{
-			int nSeats;
-			char class_;
-			std::cout << "Enter the no of seats: ";
-			std::cin >> nSeats;
-			std::cout << "Enter 'f' for first class and 's' for standard: ";
-			std::cin >> class_;
-			admin.DeductAvailSeatsFor(travelId, nSeats, class_);
-		}
-
-	}
+public:
+	void SetUsername(const char* const in_password);
+	void SetPassword(const char* const in_password);
+	void MakeReservation(Admin& admin);
+	void CancelReservation(Admin& admin);
+	void Deserialize(std::ifstream& in);
+	void Serialize(std::ofstream& out) const;
+	void PrintTitles() const;
+	void PrintInfo() const;
+	const char* const GetUsername() const;
+	const char* const GetPassword() const;
 private:
 	constexpr static int maxSize = 30;
 	char username[maxSize];
 	char password[maxSize];
-
+	int travelScheduleId = -1;
+	int nSeats = 0;
+	char class_ = '0';
 };

@@ -12,7 +12,7 @@ class TrainTravelSchedule
 public:
 	void SetTrainTravelID(int id)
 	{
-		trainTravelId = id;
+		travelScheduleId = id;
 	}
 	void GetInfo()
 	{
@@ -40,13 +40,13 @@ public:
 	{
 		using namespace std;
 		// for convertin struct tm t to string
-		char timeStr[26];
-		asctime_s(timeStr,sizeof(timeStr),&t); 
+		char timeStr[30];
+		asctime_s(timeStr,sizeof(timeStr),&t);
 		//printing details
-		const int sm_w = 5;
-		const int bg_w = 12;
-		const int ex_bg_w = 24;
-		cout << '|' << setw(sm_w) << trainTravelId << '|' << setw(bg_w) << trainName << '|' << setw(bg_w) << boardingPt << '|';
+		const int sm_w = 10;
+		const int bg_w = 15;
+		const int ex_bg_w = 28;
+		cout << '|' << setw(sm_w) << travelScheduleId << '|' << setw(bg_w) << trainName << '|' << setw(bg_w) << boardingPt << '|';
 		cout << setw(bg_w) << destinationPt << '|' << setw(sm_w) << availFirstSeats << '|' << setw(sm_w) << firstClassFare << '|';
 		cout << setw(sm_w) << availSecSeats << '|' << setw(sm_w) << secondClassFare << '|' << setw(ex_bg_w) << timeStr;
 	}
@@ -58,27 +58,42 @@ public:
 	{
 		in.read(reinterpret_cast<char*>(this), sizeof(*this));
 	}
-	int GetId()
+	int GetId() const
 	{
-		return trainTravelId;
+		return travelScheduleId;
 	}
 	static void PrintTitle() // to print the titles of the table when displaying train info
 	{
-		std::cout << "|Trn No\t|Trn Name\t|Boarding Pt\t|Dest Pt\t|1st Cls Seats\t";
-		std::cout << "|Fare\t|2nd Cls Seats\t|Fare\t|Depart time\t|\n";
+		using namespace std;
+		const int sm_w = 10;
+		const int bg_w = 15;
+		const int ex_bg_w = 28;
+		// border
+		cout << "__________________________________________________________________________________________________________________________________\n";
+
+		// first line
+		cout << '|' << setw(sm_w) << "Id" << '|' << setw(bg_w) << "Train Name" << '|' << setw(bg_w) << "Boarding" << '|';
+		cout << setw(bg_w) << "Destination" << '|' << setw(sm_w) << "Available" << '|' << setw(sm_w) << "First" << '|';
+		cout << setw(sm_w) << "Available" << '|' << setw(sm_w) << "Second" << '|' << setw(ex_bg_w) << "Time Of|\n";
+		// second line
+		cout << '|' << setw(sm_w) << " " << '|' << setw(bg_w) << "Point" << '|' << setw(bg_w) << "Point" << '|';
+		cout << setw(bg_w) << "Point" << '|' << setw(sm_w) << "FirstSeats" << '|' << setw(sm_w) << "Class Fare" << '|';
+		cout << setw(sm_w) << "SecSeats" << '|' << setw(sm_w) << "ClassFare" << '|' << setw(ex_bg_w) << "Departure|\n";
+		cout << "__________________________________________________________________________________________________________________________________\n";
+
 	}
-	void DeductSeats(int nSeats, char class_)
+	void AddSeats(int nSeats, char class_)
 	{
 		assert(class_ == 'f' || class_ == 's');
 		if (class_ = 'f')
-			availFirstSeats -= nSeats;
+			availFirstSeats += nSeats;
 		else
-			availSecSeats -= nSeats;
+			availSecSeats += nSeats;
 	}
 public:
 	static constexpr int maxSize = 30; // for the length of chars 
 private:
-	int trainTravelId = 0;
+	int travelScheduleId = 0;
 	char trainName[maxSize];
 	char boardingPt[maxSize];
 	char destinationPt[maxSize];
