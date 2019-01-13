@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "UserAccount.h"
 #include "Train.h"
 
 class Admin
@@ -83,5 +82,4 @@ private:
 	std::string userInfoFile = "usersInfo.txt";
 	
 	std::vector<TrainTravelSchedule> schedules;
-	std::vector<UserAccount> users;
 };

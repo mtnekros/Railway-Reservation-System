@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <ctime>
 
@@ -30,11 +31,6 @@ public:
 		std::cout << "Time of travel(hour min in 24 hour format)";
 		std::cin >> t.tm_hour >> t.tm_min;
 	}
-	static void PrintTitle() // to print the titles of the table when displaying train info
-	{
-		std::cout << "|Trn No\t|Trn Name\t|Boarding Pt\t|Dest Pt\t|1st Cls Seats\t";
-		std::cout << "|Fare\t|2nd Cls Seats\t|Fare\t|Depart time\t|\n";
-	}
 	void PrintInfo() const 
 	{
 		// for convertin struct tm t to string
@@ -56,9 +52,14 @@ public:
 	{
 		return trainTravelId;
 	}
-private:
+	static void PrintTitle() // to print the titles of the table when displaying train info
+	{
+		std::cout << "|Trn No\t|Trn Name\t|Boarding Pt\t|Dest Pt\t|1st Cls Seats\t";
+		std::cout << "|Fare\t|2nd Cls Seats\t|Fare\t|Depart time\t|\n";
+	}
+public:
 	static constexpr int maxSize = 30; // for the length of chars 
-
+private:
 	int trainTravelId = 0;
 	char trainName[maxSize];
 	char boardingPt[maxSize];
