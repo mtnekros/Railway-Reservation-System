@@ -1,5 +1,4 @@
 #include "Admin.h"
-#include "User.h"
 #include <string>
 
 Admin::Admin()
@@ -62,7 +61,7 @@ void Admin::AddUser()
 	std::cout << "Enter your password: ";
 	std::cin >> password;
 	users[nUsers].SetPassword(password);
-	std::cout << std::endl;
+	std::cout << "\n";
 }
 
 void Admin::RemoveTravelSchedule()
@@ -103,7 +102,7 @@ TrainTravelSchedule& Admin::GetSchedule(int index)
 	return schedules[index];
 }
 
-void Admin::DisplayUserAccounts()
+void Admin::DisplayUserAccounts() const
 {
 	User::PrintTitles();
 	for (int i = 0; i < int(users.size()); i++)
@@ -124,7 +123,7 @@ int Admin::SearchSchedule(int id) const
 	return -1;
 }
 
-int Admin::SearchUser(const std::string & username)
+int Admin::SearchUser(const std::string & username) const
 {
 	for (int i = 0; i < int(users.size()); i++)
 	{

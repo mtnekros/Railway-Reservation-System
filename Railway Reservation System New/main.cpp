@@ -78,13 +78,14 @@ void UserMode(Admin& admin)
 			}
 			else
 			{
+				std::cout << std::endl;
 				do
 				{
 					std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~USER MENU~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 					std::cout << "\t# Enter 1 to Make a Reservation.\n";
 					std::cout << "\t# Enter 2 to Cancel a Reservation.\n";
 					std::cout << "\t# Enter 3 to Display All Travel Schedules\n";
-					std::cout << "\t# Enter 4 to display your info\n";
+					std::cout << "\t# Enter 4 to Display Your Information\n";
 					std::cout << "\t# Enter 0 to return\n";
 					std::cout << "\t# Enter your Choice: ";
 					int response;

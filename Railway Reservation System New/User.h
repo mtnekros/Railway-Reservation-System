@@ -2,19 +2,18 @@
 #include <iostream>
 #include <fstream>
 
-class Admin;
 class User
 {
 public:
 	void SetUsername(const char* const in_password);
 	void SetPassword(const char* const in_password);
-	void MakeReservation(Admin& admin);
-	void CancelReservation(Admin& admin);
+	void MakeReservation(class Admin& admin);
+	void CancelReservation(class Admin& admin);
 	void Deserialize(std::ifstream& in);
 	void Serialize(std::ofstream& out) const;
 	static void PrintTitles();
 	void PrintInfoForAdmin() const;
-	void PrintInFoForUser(const Admin& admin) const;
+	void PrintInFoForUser(const class Admin& admin) const;
 	const char* const GetUsername() const;
 	const char* const GetPassword() const;
 private:

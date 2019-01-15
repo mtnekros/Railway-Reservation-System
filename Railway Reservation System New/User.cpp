@@ -24,6 +24,7 @@ void User::MakeReservation(Admin & admin)
 		if (scheduleIndex == -1)
 		{
 			std::cout << "invalid id!\n\n";
+			travelScheduleId = -1;
 		}
 		else
 		{
@@ -53,8 +54,7 @@ void User::CancelReservation(Admin & admin)
 	int index = admin.SearchSchedule(travelScheduleId);
 	if (index != -1)
 	{
-		std::cout << "You have registered for the following train schedule:\n\n";
-		admin.DisplayTravelSchedules(travelScheduleId);
+		PrintInFoForUser(admin);
 		char response;
 		std::cout << "Are you sure you want to cancel?('y' or 'n'): ";
 		std::cin >> response;
@@ -72,7 +72,7 @@ void User::CancelReservation(Admin & admin)
 	}
 	else
 	{
-		std::cout << "\nYou have no reservations to cancel," << username << ".\n\n";
+		std::cout << "\nYou have no reservations to cancel, " << username << ".\n\n";
 	}
 }
 

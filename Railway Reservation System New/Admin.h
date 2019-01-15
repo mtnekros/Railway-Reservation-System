@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 #include "TrainTravelSchedule.h"
+#include "User.h"
 
-class User;
 class Admin
 {
 public:
@@ -20,8 +20,8 @@ public:
 	int SearchSchedule(int id) const;
 
 	void AddUser();
-	void DisplayUserAccounts();
-	int SearchUser(const std::string& username);
+	void DisplayUserAccounts() const;
+	int SearchUser(const std::string& username) const;
 	User& GetUser(int index);
 	void AddAvailSeatsFor(int id, int nSeats, char class_);
 private:

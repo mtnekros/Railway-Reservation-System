@@ -36,11 +36,13 @@ private:
 	// first class seats info
 	int totalFirstSeats; // total first class seats
 	int availFirstSeats; // available first class seats
-	double firstClassFare; // fare per seat
+	int firstClassFare; // fare per seat
 	// same info for second class seats
 	int totalSecSeats;
 	int availSecSeats;
-	double secondClassFare;
+	int secondClassFare;
 	struct tm t = {}; // for time of departure of train. tm is a struct in ctime header
+	int durationHr; // for duration of the travel
+	int durationMin;
 };
 
