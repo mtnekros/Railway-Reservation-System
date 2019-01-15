@@ -15,6 +15,7 @@ public:
 	void RemoveTravelSchedule();
 	void DisplayTravelSchedules() const;
 	void DisplayTravelSchedules(int id) const;
+	TrainTravelSchedule& GetSchedule(int index);
 	// function to search id and index, return -1 if not found
 	int SearchSchedule(int id) const;
 

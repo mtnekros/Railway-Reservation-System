@@ -20,7 +20,7 @@ void AdminMode(Admin& admin)
 	do
 	{
 		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ADMIN MENU~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
-		std::cout << "\t# Enter 1 to Add New Travel Schedule mode\n";
+		std::cout << "\t# Enter 1 to Add New Travel Schedule\n";
 		std::cout << "\t# Enter 2 to Remove Travel Schedule\n";
 		std::cout << "\t# Enter 3 to Display Travel Schedule\n";
 		std::cout << "\t# Enter 4 to Display User Accounts\n";
@@ -64,7 +64,7 @@ void UserMode(Admin& admin)
 		int index = admin.SearchUser(username);
 		if (index == -1)
 		{
-			std::cout << "\nSuch a username doesn't exist in the database.\n";
+			std::cout << "\nSuch a username doesn't exist in the database.\n\n";
 			return;
 		}
 		else
@@ -74,7 +74,7 @@ void UserMode(Admin& admin)
 			User& user = admin.GetUser(index);
 			if (strcmp(password, user.GetPassword()) != 0)
 			{
-				std::cout << "Wrong Password!\n";
+				std::cout << "***Wrong Password!***\n\n";
 			}
 			else
 			{

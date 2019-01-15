@@ -12,11 +12,12 @@ class TrainTravelSchedule
 public:
 	void SetTrainTravelID(int id);
 	void GetInfoFromAdmin();
-	void PrintInfo() const;
 	void Serialize(std::ofstream& out);
 	void Deserialize(std::ifstream& in);
 	int GetId() const;
+	int GetAvailSeats(char class_) const;
 	static void PrintTitle();
+	void PrintInfo() const;
 	void AddSeats(int nSeats, char class_)
 	{
 		assert(class_ == 'f' || class_ == 's');

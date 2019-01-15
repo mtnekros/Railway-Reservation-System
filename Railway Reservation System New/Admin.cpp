@@ -46,11 +46,15 @@ void Admin::AddUser()
 {
 	char username[30];
 	char password[30];
+	bool alreadyTaken = false;
 	do
 	{
 		std::cout << "Enter your username: ";
 		std::cin >> username;
-	} while ( SearchUser(username) != -1); // repeat asking username until username is not unique
+		if (alreadyTaken = SearchUser(username) != -1)
+			std::cout << username << " is already taken! Try again.\n\n";
+
+	} while (alreadyTaken); // repeat asking username until username is not unique
 
 	const int nUsers = users.size();
 	users.emplace_back();
@@ -87,8 +91,16 @@ void Admin::DisplayTravelSchedules(int id) const
 {
 	int i = SearchSchedule(id);
 	assert(i>=0);
+	TrainTravelSchedule::PrintTitle();
 	schedules[i].PrintInfo();
 	std::cout << std::endl;
+}
+
+TrainTravelSchedule& Admin::GetSchedule(int index) 
+{
+	assert(index >= 0);
+	assert(index < int(schedules.size()));
+	return schedules[index];
 }
 
 void Admin::DisplayUserAccounts()
@@ -122,8 +134,10 @@ int Admin::SearchUser(const std::string & username)
 	return -1;
 }
 
-User & Admin::GetUser(int index)
+User& Admin::GetUser(int index)
 {
+	assert(index >= 0);
+	assert(index < int(users.size()));
 	return users[index];
 }
 

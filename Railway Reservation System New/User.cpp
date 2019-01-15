@@ -18,7 +18,8 @@ void User::MakeReservation(Admin & admin)
 	admin.DisplayTravelSchedules();
 	std::cout << "\nEnter the travel id for the train you want to book: ";
 	std::cin >> travelScheduleId;
-	if (admin.SearchSchedule(travelScheduleId) == -1)
+	int scheduleIndex = admin.SearchSchedule(travelScheduleId);
+	if (scheduleIndex == -1)
 	{
 		std::cout << "invalid id!\n\n";
 	}
@@ -28,7 +29,15 @@ void User::MakeReservation(Admin & admin)
 		std::cin >> nSeats;
 		std::cout << "Enter 'f' for first class and 's' for standard: ";
 		std::cin >> class_;
+		if (nSeats > admin.GetSchedule(scheduleIndex).GetAvailSeats(class_))
+		{
+			std::cout << "There aren't " << nSeats << " seats available at the moment. Sorry for your Inconvenience, " << username << ".\n\n";
+			return;
+		}
 		admin.AddAvailSeatsFor(travelScheduleId, -nSeats, class_); //-nSeats for deducting available seats
+		std::cout << "\nYou have booked " << nSeats << " " << class_ << "-class for the following travel schedule: \n\n" ;
+		admin.DisplayTravelSchedules(travelScheduleId);
+		std::cout << "\nTHANK YOU!\n\n";
 	}
 }
 
@@ -68,9 +77,12 @@ void User::PrintTitles()
 	using namespace std;
 	const int sm_w = 13;
 	const int bg_w = 18;
-	cout << "___________________________________________________________________________________\n";
-	cout << '|' << setw(bg_w) << "username" << '|' << setw(bg_w) << "password" << '|' << setw(bg_w) << "travelScheduleId" << '|' << setw(sm_w) << "no Of Seats" << '|' << setw(sm_w) << "class  |\n";
-	cout << "___________________________________________________________________________________\n";
+	const std::string bg_tw = "------------------";
+	const std::string sm_tw = "-------------";
+	std::string cls = "class";
+	cout << "+" << bg_tw << "+" << bg_tw << "+" << bg_tw << "+" << sm_tw << "+" << sm_tw << "+" << "\n";
+	cout << '|' << setw(bg_w) << "username" << '|' << setw(bg_w) << "password" << '|' << setw(bg_w) << "travelScheduleId" << '|' << setw(sm_w) << "no Of Seats" << '|' << setw(sm_w) << "class"<< "|\n";
+	cout << "+" << bg_tw << "+" << bg_tw << "+" << bg_tw << "+" << sm_tw << "+" << sm_tw << "+" << "\n";
 
 }
 
@@ -79,9 +91,8 @@ void User::PrintInfo() const
 	using namespace std;
 	const int sm_w = 13;
 	const int bg_w = 18;
-	cout << '|' << setw(bg_w) << username << '|' << setw(bg_w) << password << '|' << setw(bg_w) << travelScheduleId << '|' << setw(sm_w) << nSeats << '|' << setw(sm_w-4) << class_ << '\n';
+	cout << '|' << setw(bg_w) << username << '|' << setw(bg_w) << password << '|' << setw(bg_w) << travelScheduleId << '|' << setw(sm_w) << nSeats << '|' << setw(sm_w) << class_ << "|\n";
 }
-
 
 const char * const User::GetPassword() const
 {
