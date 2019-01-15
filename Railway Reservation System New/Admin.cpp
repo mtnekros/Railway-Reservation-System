@@ -108,7 +108,7 @@ void Admin::DisplayUserAccounts()
 	User::PrintTitles();
 	for (int i = 0; i < int(users.size()); i++)
 	{
-		users[i].PrintInfo();
+		users[i].PrintInfoForAdmin();
 	}
 	std::cout << "\n";
 }

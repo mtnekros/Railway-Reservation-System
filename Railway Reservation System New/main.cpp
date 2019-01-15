@@ -102,8 +102,7 @@ void UserMode(Admin& admin)
 						admin.DisplayTravelSchedules();
 						break;
 					case 4:
-						user.PrintTitles();
-						user.PrintInfo();
+						user.PrintInFoForUser(admin);
 						std::cout << std::endl;
 						break;
 					case 0:

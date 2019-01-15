@@ -13,7 +13,8 @@ public:
 	void Deserialize(std::ifstream& in);
 	void Serialize(std::ofstream& out) const;
 	static void PrintTitles();
-	void PrintInfo() const;
+	void PrintInfoForAdmin() const;
+	void PrintInFoForUser(const Admin& admin) const;
 	const char* const GetUsername() const;
 	const char* const GetPassword() const;
 private:

@@ -14,30 +14,37 @@ void User::SetPassword(const char* const in_password)
 
 void User::MakeReservation(Admin & admin)
 {
-	std::cout << "The information about the travel are: \n\n";
-	admin.DisplayTravelSchedules();
-	std::cout << "\nEnter the travel id for the train you want to book: ";
-	std::cin >> travelScheduleId;
-	int scheduleIndex = admin.SearchSchedule(travelScheduleId);
-	if (scheduleIndex == -1)
+	if (travelScheduleId == -1)
 	{
-		std::cout << "invalid id!\n\n";
+		std::cout << "The information about the travel are: \n\n";
+		admin.DisplayTravelSchedules();
+		std::cout << "\nEnter the travel id for the train you want to book: ";
+		std::cin >> travelScheduleId;
+		int scheduleIndex = admin.SearchSchedule(travelScheduleId);
+		if (scheduleIndex == -1)
+		{
+			std::cout << "invalid id!\n\n";
+		}
+		else
+		{
+			std::cout << "Enter the no of seats: ";
+			std::cin >> nSeats;
+			std::cout << "Enter 'f' for first class and 's' for standard: ";
+			std::cin >> class_;
+			if (nSeats > admin.GetSchedule(scheduleIndex).GetAvailSeats(class_))
+			{
+				std::cout << "There aren't " << nSeats << " seats available at the moment. Sorry for your Inconvenience, " << username << ".\n\n";
+				return;
+			}
+			admin.AddAvailSeatsFor(travelScheduleId, -nSeats, class_); //-nSeats for deducting available seats
+			std::cout << "\nYou have booked " << nSeats << " " << class_ << "-class seats for the following travel schedule: \n\n";
+			admin.DisplayTravelSchedules(travelScheduleId);
+			std::cout << "\nTHANK YOU!\n\n";
+		}
 	}
 	else
 	{
-		std::cout << "Enter the no of seats: ";
-		std::cin >> nSeats;
-		std::cout << "Enter 'f' for first class and 's' for standard: ";
-		std::cin >> class_;
-		if (nSeats > admin.GetSchedule(scheduleIndex).GetAvailSeats(class_))
-		{
-			std::cout << "There aren't " << nSeats << " seats available at the moment. Sorry for your Inconvenience, " << username << ".\n\n";
-			return;
-		}
-		admin.AddAvailSeatsFor(travelScheduleId, -nSeats, class_); //-nSeats for deducting available seats
-		std::cout << "\nYou have booked " << nSeats << " " << class_ << "-class for the following travel schedule: \n\n" ;
-		admin.DisplayTravelSchedules(travelScheduleId);
-		std::cout << "\nTHANK YOU!\n\n";
+		std::cout << username << ", you already have a reservation. Cancel it if you want to make a new reservation.\n\n";
 	}
 }
 
@@ -55,6 +62,8 @@ void User::CancelReservation(Admin & admin)
 		{
 			admin.AddAvailSeatsFor(travelScheduleId, nSeats, class_);
 			travelScheduleId = -1;
+			nSeats = 0;
+			class_ = '0';
 		}
 		else
 		{
@@ -91,12 +100,29 @@ void User::PrintTitles()
 
 }
 
-void User::PrintInfo() const
+void User::PrintInfoForAdmin() const
 {
 	using namespace std;
 	const int sm_w = 13;
 	const int bg_w = 18;
 	cout << '|' << setw(bg_w) << username << '|' << setw(bg_w) << password << '|' << setw(bg_w) << travelScheduleId << '|' << setw(sm_w) << nSeats << '|' << setw(sm_w) << class_ << "|\n";
+}
+
+void User::PrintInFoForUser(const Admin& admin) const
+{
+	std::cout << "\nYour Informations are:\n\n";
+	std::cout << "Username: " << username << "\n";
+	std::cout << "password: " << password << "\n";
+	if (travelScheduleId == -1)
+	{
+		std::cout << "\nYou have no reservations at the moment.\n\n";
+	}
+	else
+	{
+		std::cout << "\nYou have booked " << nSeats << " " << class_ << "-class seats for the following travel schedule: \n\n";
+		admin.DisplayTravelSchedules(travelScheduleId);
+		std::cout << "\n";
+	}
 }
 
 const char * const User::GetPassword() const
