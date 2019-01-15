@@ -21,7 +21,7 @@ public:
 	void AddSeats(int nSeats, char class_)
 	{
 		assert(class_ == 'f' || class_ == 's');
-		if (class_ = 'f')
+		if (class_ == 'f')
 			availFirstSeats += nSeats;
 		else
 			availSecSeats += nSeats;

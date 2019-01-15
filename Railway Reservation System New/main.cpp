@@ -22,8 +22,8 @@ void AdminMode(Admin& admin)
 		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ADMIN MENU~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
 		std::cout << "\t# Enter 1 to Add New Travel Schedule\n";
 		std::cout << "\t# Enter 2 to Remove Travel Schedule\n";
-		std::cout << "\t# Enter 3 to Display Travel Schedule\n";
-		std::cout << "\t# Enter 4 to Display User Accounts\n";
+		std::cout << "\t# Enter 3 to Display All Travel Schedules\n";
+		std::cout << "\t# Enter 4 to Display All User Accounts\n";
 		std::cout << "\t# Enter 0 to exit\n";
 		std::cout << "\t# Enter your Choice: ";
 		int response;
