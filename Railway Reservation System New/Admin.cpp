@@ -36,9 +36,10 @@ void Admin::AddTravelSchedule()
 {
 	int nSchedules = schedules.size();
 	int newID = (nSchedules == 0) ? 0 : schedules[nSchedules - 1].GetId() + 1;
-	schedules.emplace_back();
-	schedules[nSchedules].SetTrainTravelID(newID);
-	schedules[nSchedules].GetInfoFromAdmin();
+	TrainTravelSchedule temp;
+	temp.SetTrainTravelID(newID);
+	temp.GetInfoFromAdmin();
+	schedules.push_back(temp);
 }
 
 void Admin::AddUser()

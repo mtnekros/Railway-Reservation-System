@@ -16,7 +16,7 @@ void AdminMode(Admin& admin)
 		std::cout << "Wrong password!\n\n";
 		return;
 	}
-
+	std::cout << std::endl;
 	do
 	{
 		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ADMIN MENU~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
