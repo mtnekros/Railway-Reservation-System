@@ -49,16 +49,21 @@ void User::CancelReservation(Admin & admin)
 		std::cout << "You have registered for the following train schedule:\n\n";
 		admin.DisplayTravelSchedules(travelScheduleId);
 		char response;
-		std::cout << "Are you sure you want to cancel?('y' or 'n')";
+		std::cout << "Are you sure you want to cancel?('y' or 'n'): ";
 		std::cin >> response;
 		if (response == 'y')
+		{
 			admin.AddAvailSeatsFor(travelScheduleId, nSeats, class_);
+			travelScheduleId = -1;
+		}
 		else
+		{
 			std::cout << "\nYour cancellation has been cancelled.\n";
+		}
 	}
 	else
 	{
-		std::cout << "\nYou have no reservation to cancel.\n\n";
+		std::cout << "\nYou have no reservations to cancel," << username << ".\n\n";
 	}
 }
 
